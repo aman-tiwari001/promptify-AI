@@ -1,3 +1,5 @@
+'use client'
+
 import PromptCard from '@components/PromptCard';
 
 const Profile = ({ name, desc, posts, handleDel, handleEdit }) => {
