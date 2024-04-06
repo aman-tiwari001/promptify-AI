@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import PromptCard from '@components/PromptCard';
 
@@ -13,9 +13,17 @@ const Profile = ({ name, desc, posts, handleDel, handleEdit }) => {
       <div className='flex flex-wrap gap-5 my-8'>
         {(posts.length > 0
           ? posts
-          : JSON.parse(localStorage.getItem('postData'))
+          : typeof window !== 'undefined' &&
+            JSON.parse(localStorage.getItem('postData'))
         ).map((post) => {
-          return <PromptCard handleDel={handleDel} handleEdit={handleEdit} post={post} key={post._id} />;
+          return (
+            <PromptCard
+              handleDel={handleDel}
+              handleEdit={handleEdit}
+              post={post}
+              key={post._id}
+            />
+          );
         })}
       </div>
     </section>
