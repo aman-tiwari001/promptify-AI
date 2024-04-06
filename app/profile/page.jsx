@@ -14,7 +14,7 @@ const ProfilePage = () => {
     const res = await fetch(`/api/users/${session?.user.id}/posts`);
     const data = await res.json();
     setPosts(data.results);
-    window.localStorage.setItem('postData', JSON.stringify(data.results));
+    localStorage.setItem('postData', JSON.stringify(data.results));
   };
 
   const handleDel = async (id) => {
