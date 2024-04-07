@@ -11,7 +11,9 @@ const ProfilePage = () => {
   const [posts, setPosts] = useState([]);
 
   const fetchMyPosts = async () => {
-    const res = await fetch(`/api/users/${session?.user.id}/posts`);
+    const res = await fetch(`/api/users/${session?.user.id}/posts`, {
+      cache: 'no-store',
+    });
     const data = await res.json();
     setPosts(data.results);
     if (typeof window !== undefined)

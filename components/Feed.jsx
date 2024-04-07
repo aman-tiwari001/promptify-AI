@@ -49,7 +49,7 @@ const Feed = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const res = await fetch('/api/prompt');
+        const res = await fetch('/api/prompt', { cache: 'no-store' });
         setPostList(await res.json());
       } catch (error) {
         console.log(error);
@@ -59,9 +59,7 @@ const Feed = () => {
   }, []);
 
   return (
-    <section
-      className='flex flex-wrap w-full gap-5 my-5'
-    >
+    <section className='flex flex-wrap w-full gap-5 my-5'>
       <input
         type='text'
         className='form_input'
@@ -69,7 +67,7 @@ const Feed = () => {
         onChange={handleSearch}
         ref={searchInputRef}
       />
-      {postList.map((post) => {
+      {postList.reverse().map((post) => {
         return (
           <PromptCard
             post={post}

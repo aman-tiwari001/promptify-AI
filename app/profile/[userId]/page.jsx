@@ -16,8 +16,12 @@ const PublicProfilePage = ({ params }) => {
 
   useEffect(() => {
     const fetchUserPosts = async () => {
-      const postRes = await fetch(`/api/users/${userId}/posts`);
-      const userRes = await fetch(`/api/users/${userId}`);
+      const postRes = await fetch(`/api/users/${userId}/posts`, {
+        cache: 'no-store',
+      });
+      const userRes = await fetch(`/api/users/${userId}`, {
+        cache: 'no-store',
+      });
       const postData = await postRes.json();
       const userData = await userRes.json();
       setPosts(postData.results);

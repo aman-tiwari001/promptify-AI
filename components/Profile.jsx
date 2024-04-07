@@ -21,7 +21,7 @@ const Profile = ({ name, desc, posts, handleDel, handleEdit }) => {
       </h1>
       <p className='desc'>{desc}</p>
       <div className='flex flex-wrap gap-5 my-8'>
-        {(posts.length > 0 ? posts : localData).map((post) => {
+        {(posts.length > 0 ? posts : localData).reverse().map((post) => {
           return (
             <PromptCard
               handleDel={handleDel}
