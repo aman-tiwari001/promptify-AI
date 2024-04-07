@@ -14,7 +14,7 @@ const ProfilePage = () => {
     const res = await fetch(`/api/users/${session?.user.id}/posts`);
     const data = await res.json();
     setPosts(data.results);
-    if (typeof window !== 'undefined')
+    if (typeof window !== undefined)
       localStorage.setItem('postData', JSON.stringify(data.results));
   };
 

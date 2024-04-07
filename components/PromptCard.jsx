@@ -78,12 +78,14 @@ const PromptCard = ({
           ))}
         </div>
       </div>
-      <button
-        onClick={() => genAIOutputPopUp(post.prompt)}
-        className='black_btn my-3'
-      >
-        Generate
-      </button>
+      {!pathname.includes('/profile') && (
+        <button
+          onClick={() => genAIOutputPopUp(post.prompt)}
+          className='black_btn my-3 hover:bg-gradient-to-tr from-orange-600 to-orange-400 hover:text-white hover:border-white hover:shadow-lg hover:shadow-orange-500'
+        >
+          Generate
+        </button>
+      )}
       {session?.user.id === post.user._id && pathname === '/profile' && (
         <div className='w-full flex-end gap-5'>
           <span

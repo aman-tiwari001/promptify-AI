@@ -9,7 +9,7 @@ import OutputPopUp from './OutputPopUp';
 const Feed = () => {
   const [searchText, setSearchText] = useState('');
   const [postList, setPostList] = useState([]);
-  const [prompt, setPrompt] = useState("");
+  const [prompt, setPrompt] = useState('');
   const searchInputRef = useRef();
   const [showGenAIOutput, setShowGenAIOutput] = useState(false);
 
@@ -42,7 +42,7 @@ const Feed = () => {
   };
 
   const genAIOutputPopUp = (prompt) => {
-    setPrompt(prompt)
+    setPrompt(prompt);
     setShowGenAIOutput((prev) => !prev);
   };
 
@@ -59,7 +59,9 @@ const Feed = () => {
   }, []);
 
   return (
-    <section className='flex flex-wrap w-full gap-5 my-5'>
+    <section
+      className='flex flex-wrap w-full gap-5 my-5'
+    >
       <input
         type='text'
         className='form_input'
@@ -69,10 +71,17 @@ const Feed = () => {
       />
       {postList.map((post) => {
         return (
-          <PromptCard post={post} key={post._id} hashTagClick={hashTagClick} genAIOutputPopUp={genAIOutputPopUp}/>
+          <PromptCard
+            post={post}
+            key={post._id}
+            hashTagClick={hashTagClick}
+            genAIOutputPopUp={genAIOutputPopUp}
+          />
         );
       })}
-      {showGenAIOutput && <OutputPopUp setShowGenAIOutput={setShowGenAIOutput} prompt={prompt}/>}
+      {showGenAIOutput && (
+        <OutputPopUp setShowGenAIOutput={setShowGenAIOutput} prompt={prompt} />
+      )}
     </section>
   );
 };

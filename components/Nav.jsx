@@ -28,7 +28,7 @@ const Nav = () => {
           width={40}
           height={40}
           alt='Promptify Logo'
-          className='object-contain'
+          className='object-contain rounded-full hover:shadow-lg transition-shadow duration-300 hover:shadow-orange-400'
         />
         <p className='logo_text'>Promptify</p>
       </Link>

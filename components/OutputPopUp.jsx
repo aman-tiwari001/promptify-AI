@@ -22,7 +22,7 @@ const OutputPopUp = ({ prompt, setShowGenAIOutput }) => {
         <div className='flex justify-between items-center'>
           <div></div>
           <h2 className='text-orange-600 font-bold text-xl'>
-            GEN AI : Powered by <span className='blue_gradient'> Gemini</span>
+            GenAI : Powered by <span className='blue_gradient'> Gemini</span>
           </h2>
           <Image
             src='/assets/icons/cross.png'

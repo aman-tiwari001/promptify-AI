@@ -7,8 +7,8 @@ const Profile = ({ name, desc, posts, handleDel, handleEdit }) => {
   const [localdata, setLocalData] = useState([]);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const storedData = JSON.parse(localStorage.getItem('postData'));
+    if (typeof window !== undefined) {
+      const storedData = JSON.parse(localStorage.getItem('postData')) || [];
       setLocalData(storedData);
     }
   }, []);
