@@ -19,6 +19,17 @@ const RootLayout = ({ children }) => {
             <Nav />
             {children}
           </main>
+          <div className='text-black mx-auto text-center w-full  my-8'>
+            Developed by{' '}
+            <a
+              className='text-blue-700 underline'
+              href='http://linkedin.com/in/aman-tiwari001'
+              target='_blank'
+            >
+              Aman Tiwari
+            </a>{' '}
+            with 💓
+          </div>
         </Provider>
       </body>
     </html>

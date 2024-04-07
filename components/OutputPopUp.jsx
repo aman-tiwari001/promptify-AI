@@ -2,6 +2,7 @@ import { generateText } from '@utils/gemini';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { formatText } from '@utils/formatText';
+import Markdown from 'markdown-to-jsx';
 
 const OutputPopUp = ({ prompt, setShowGenAIOutput }) => {
   const [loading, setLoading] = useState(false);
@@ -17,7 +18,7 @@ const OutputPopUp = ({ prompt, setShowGenAIOutput }) => {
   }, [prompt]);
   return (
     <div className='w-screen h-screen fixed top-0 left-0 backdrop-filter backdrop-brightness-[0.2]'>
-      <div className='rounded-lg shadow-xl p-4 bg-white fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 max-h-[80vh] min-h-20 overflow-y-auto'>
+      <div className='rounded-lg w-[87%] sm:w-[65%] shadow-xl p-4 bg-white fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 max-h-[80vh] min-h-20 overflow-y-auto'>
         <div className='flex justify-between items-center'>
           <div></div>
           <h2 className='text-orange-600 font-bold text-xl'>
@@ -32,6 +33,13 @@ const OutputPopUp = ({ prompt, setShowGenAIOutput }) => {
             onClick={() => setShowGenAIOutput(false)}
           />
         </div>
+        <div className='desc p-2 text-wrap text-left'>
+          <p className='mb-3 text-black font-bold text-xl'>{prompt}</p>
+          <p className='text-lg'>
+            <Markdown>{text}</Markdown>
+          </p>
+        </div>
+
         {loading && (
           <Image
             src='/assets/images/ai-loader.gif'
@@ -42,9 +50,6 @@ const OutputPopUp = ({ prompt, setShowGenAIOutput }) => {
             onClick={() => setShowGenAIOutput(false)}
           />
         )}
-        <pre className='desc p-2 text-wrap text-left'>
-          {text} {formatText(prompt)}
-        </pre>
       </div>
     </div>
   );
