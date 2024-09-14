@@ -1,21 +1,31 @@
 import mongoose from 'mongoose';
 
-let isConnected = false;
+type ConnectionObject = {
+  isConnected?: number;
+};
 
-export const connectToDB = async () => {
-  if (isConnected) {
-    console.log('Database already connected');
+const connection: ConnectionObject = {};
+
+async function dbConnect(): Promise<void> {
+  // Check if we have a connection to the database or if it's currently connecting
+  if (connection.isConnected) {
+    console.log('Already connected to the database');
     return;
   }
 
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      dbName: 'promptify-db',
-    });
-    isConnected = true;
-    console.log("🚀 Database Connected!")
+    // Attempt to connect to the database
+    const db = await mongoose.connect(process.env.MONGODB_URI+"/promptify-db" || '', {});
 
+    connection.isConnected = db.connections[0].readyState;
+
+    console.log('Database connected successfully');
   } catch (error) {
-    console.log('💩 Error occured while connecting to Database', error);
+    console.error('Database connection failed:', error);
+
+    // Graceful exit in case of a connection error
+    process.exit(1);
   }
-};
+}
+
+export default dbConnect;
